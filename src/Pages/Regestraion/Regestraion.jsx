@@ -26,15 +26,18 @@ const handleregestraion = e =>{
 
   createuser(email,password)
   .then(res=>{
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: ' Successfully Regestered',
-      showConfirmButton: false,
-      timer: 1500
+    updateprofile(name,image)
+    .then(()=>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: ' Successfully Regestered',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    
+      navigate('/')
     })
-  
-    navigate('/')
   })
   .catch(error=>{
     console.log(error);
