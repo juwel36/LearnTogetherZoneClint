@@ -10,6 +10,7 @@ import ErrorElement from "../Components/ErrorElement";
 import CreateAssignments from "../Components/CreateAssignments";
 import Assignments from "../Components/Assignments";
 import UpdateAssignment from "../Pages/update/UpdateAssignment";
+import SubmitedAssignments from "../Pages/SubmittedAssignments/SubmitedAssignments";
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ element: <Home></Home>
 },
 {
 path:'/createassignments',
-element : <CreateAssignments></CreateAssignments>
+element :<PrivetRoute> <CreateAssignments></CreateAssignments></PrivetRoute>
 }
 ,
 {
@@ -44,6 +45,11 @@ element: <Assignments></Assignments>
 path:'/updateAssignment/:id',
 element:<UpdateAssignment></UpdateAssignment>,
 loader: ({params})=> fetch(`http://localhost:5000/create/${params.id}`)
+}
+,
+{
+path:'/submittedassignments',
+element:<SubmitedAssignments></SubmitedAssignments>
 }
 
 

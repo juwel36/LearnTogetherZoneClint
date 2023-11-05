@@ -19,9 +19,10 @@ const Deficalty=e.target.Deficalty.value;
 const date=e.target.date.value;
 const email=e.target.email.value;
 const description=e.target.description.value;
+const status=  "pending"
 
 const create={
-title,marks,image,Deficalty,date,email,description
+title,marks,image,Deficalty,date,email,description,status
 
 }
 axios.post('http://localhost:5000/create',create)

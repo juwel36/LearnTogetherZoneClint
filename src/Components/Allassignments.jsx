@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 
 const Allassignments = ({assignments}) => {
-console.log(assignments);
+
 const {Deficalty,date,description,email,image,marks,title,_id}=assignments;
 
   return (

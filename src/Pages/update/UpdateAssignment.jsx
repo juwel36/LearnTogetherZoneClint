@@ -41,7 +41,7 @@ if(data.modifiedCount > 0){
     showConfirmButton: false,
     timer: 3000
   })
-  navigate('/')
+  navigate('/assignments')
 
 }
 })
