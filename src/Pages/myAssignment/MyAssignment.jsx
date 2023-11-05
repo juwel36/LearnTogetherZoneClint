@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-const SubmitedAssignments = () => {
+
+const MyAssignment = () => {
+
   const [data, setData] = useState([]);
-  const [statusFilter, setStatusFilter] = useState("pending");
+  const [statusFilter, setStatusFilter] = useState("confirm");
 
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
@@ -28,38 +30,15 @@ const SubmitedAssignments = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const handleConfirm = (id) => {
-    fetch(`http://localhost:5000/create/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ status: 'confirm' }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          
-          setData((prevData) => {
-            const updatedBooking = prevData.find((booking) => booking._id === id);
-            if (updatedBooking) {
-              updatedBooking.status = 'confirm';
-            }
-            return [...prevData];
-          });
-        }
-      });
-  };
 
   const filteredData = data.filter((item) => item.status === statusFilter);
 
   return (
-    <div>
-      <Navbar></Navbar>
+   <div className="bg-white">
+     <div className="max-w-6xl mx-auto">
+<Navbar></Navbar>
 
-      <h1>Filtered Data for Status: {statusFilter}</h1>
-      <div>
+<div className="grid grid-cols-1 gap-5 mt-6">
         {filteredData.map((item) => (
           <div key={item._id} className="card lg:card-side bg-base-100 shadow-xl">
             <figure><img className="w-40 h-40" src={item.image} alt="Album" /></figure>
@@ -67,14 +46,17 @@ const SubmitedAssignments = () => {
               <h2 className="card-title"> {item.title} </h2>
               <p>Click the button to listen on Spotify app.</p>
               <div className="card-actions justify-end">
-                <button onClick={() => handleConfirm(item._id)} className="btn bg-sky-900 text-white">{item.status}</button>
+                <button className="btn bg-sky-900 text-white">{item.status}</button>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+
     </div>
+   </div>
   );
 };
 
-export default SubmitedAssignments;
+export default MyAssignment;
