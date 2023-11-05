@@ -7,6 +7,8 @@ import LogIn from "../Pages/Login/LogIn";
 import Regestraion from "../Pages/Regestraion/Regestraion";
 import PrivetRoute from "../privetroutes/PrivetRoute";
 import ErrorElement from "../Components/ErrorElement";
+import CreateAssignments from "../Components/CreateAssignments";
+import Assignments from "../Components/Assignments";
 
 
 const router = createBrowserRouter([
@@ -26,8 +28,16 @@ element: <Home></Home>
 {
   path: '/regestraion',
   element: <Regestraion></Regestraion>
+},
+{
+path:'/createassignments',
+element : <CreateAssignments></CreateAssignments>
 }
-
+,
+{
+path : '/assignments',
+element: <Assignments></Assignments>
+}
 
 
 
