@@ -9,6 +9,7 @@ import PrivetRoute from "../privetroutes/PrivetRoute";
 import ErrorElement from "../Components/ErrorElement";
 import CreateAssignments from "../Components/CreateAssignments";
 import Assignments from "../Components/Assignments";
+import UpdateAssignment from "../Pages/update/UpdateAssignment";
 
 
 const router = createBrowserRouter([
@@ -37,6 +38,12 @@ element : <CreateAssignments></CreateAssignments>
 {
 path : '/assignments',
 element: <Assignments></Assignments>
+}
+,
+{
+path:'/updateAssignment/:id',
+element:<UpdateAssignment></UpdateAssignment>,
+loader: ({params})=> fetch(`http://localhost:5000/create/${params.id}`)
 }
 
 
