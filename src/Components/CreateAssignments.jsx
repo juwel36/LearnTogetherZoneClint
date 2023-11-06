@@ -16,13 +16,25 @@ const title=e.target.title.value;
 const marks=e.target.marks.value;
 const image=e.target.image.value;
 const Deficalty=e.target.Deficalty.value;
+const Spotlight=e.target.Spotlight.value;
 const date=e.target.date.value;
 const email=e.target.email.value;
 const description=e.target.description.value;
 const status=  "pending"
 
+if (!title || !marks || !image || !Deficalty || !date || !email || !description || !Spotlight) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Validation Error',
+    text: 'Please fill in all required fields.',
+  });
+  return;
+}
+
+
+
 const create={
-title,marks,image,Deficalty,date,email,description,status
+title,marks,image,Deficalty,date,email,description,status,Spotlight
 
 }
 axios.post('http://localhost:5000/create',create)
@@ -111,6 +123,18 @@ User Email </h1>
 
 {/* ------------------- */}
 <div className="flex gap-7">
+<div className="w-full">
+<h1 className="text-xl font-bold text-black pt-4 pb-3"> Spotlight
+ </h1>
+ <select name="Spotlight" id="" className="input input-bordered input-info w-full">
+  <option value="Regular-Picks">Regular-Picks</option>
+  <option value="Featured ">Featured </option>
+ 
+</select>
+
+
+</div>
+
 <div className="w-full">
 <h1 className="text-xl font-bold text-black pt-4 pb-3">
 Description </h1>

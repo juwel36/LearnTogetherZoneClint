@@ -4,20 +4,32 @@ import { useQuery } from "@tanstack/react-query";
 import Allassignments from "./Allassignments";
 import { useState } from "react";
 import Spinner from "./Spinner";
+import { useLoaderData } from "react-router-dom";
 
 
 const Assignments = () => {
-  const { data: assignments=[], isPending, error, } = useQuery({
-    queryKey: ['assignments'],
+  //  paigination
+    const { count } = useLoaderData()
+    const [itemsPerPage, setitemsperPage] = useState(5)
+    const numberOfPages = Math.ceil(count / itemsPerPage)
+    const pages = [...Array(numberOfPages).keys()];
+    const [currentPage,setCurrentPage]=useState(0)
+
+
+
+
+  const { data: assignments = [], isPending, error } = useQuery({
+    queryKey: ['assignments', currentPage, itemsPerPage],
     queryFn: async () => {
-     const res= await axios.get('http://localhost:5000/create')
-     return res.data
+      const res = await axios.get(`http://localhost:5000/create?page=${currentPage}&size=${itemsPerPage}`);
+      return res.data;
     }
-  })
+  });
   
   
- 
   
+
+
   const [selectedDifficulty, setSelectedDifficulty] = useState('Easy'); 
 
   const filteredAssignments = assignments.filter(
@@ -31,6 +43,34 @@ const Assignments = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+
+
+
+  const handleitemPerPage=(e)=>{
+    const val =parseInt(e.target.value)
+    console.log(val);
+    setitemsperPage(val)
+    setCurrentPage(0)
+
+  }
+
+  const handlePrevious = ()=>{
+    if(currentPage > 0){
+        setCurrentPage(currentPage-1)
+    }
+}
+
+
+const handleNext =()=>{
+  if(currentPage < pages.length -1 ){
+      setCurrentPage(currentPage+1)
+  }
+  
+  }
+
+
+
+
 
 
 
@@ -55,7 +95,29 @@ const Assignments = () => {
 
 
 </div>
+<div id="paigination" className="text-center">
+<p>current page : {currentPage} </p>
+<button className="btn mr-2" onClick={handlePrevious}> Pre </button>
+{
+        pages.map(page => <button className="btn mr-2 my-16 "
+          key={page}
+          onClick={()=> setCurrentPage(page)}
+          id={currentPage === page && 'selected'}
+          >{page} </button>)
+      }
+<button className="btn" onClick={handleNext}>Next</button>
 
+<select name="" value={itemsPerPage} hidden onChange={handleitemPerPage} id="">
+<option value="3">3</option>
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="20">20</option>
+<option value="50">50</option>
+
+</select>
+
+
+</div>
       
     </div>
  </div>

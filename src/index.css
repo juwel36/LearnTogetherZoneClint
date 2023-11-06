@@ -20,3 +20,9 @@
   display: block;
 }
 
+
+  #paigination #selected{
+  background-color: tomato;
+  color: black;
+  font-size: large;
+  }

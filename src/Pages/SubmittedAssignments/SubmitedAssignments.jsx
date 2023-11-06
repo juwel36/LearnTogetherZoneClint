@@ -4,6 +4,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Authproder/Authprovider";
 import { Link } from "react-router-dom";
+import Spinner from "../../Components/Spinner";
 
 const SubmitedAssignments = () => {
 
@@ -26,7 +27,7 @@ const SubmitedAssignments = () => {
   }, [assignments]);
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <div>  <Spinner></Spinner>  </div>;
   }
   if (error) {
     return <div>Error: {error.message}</div>;

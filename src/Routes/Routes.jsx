@@ -41,12 +41,13 @@ element :<PrivetRoute> <CreateAssignments></CreateAssignments></PrivetRoute>
 ,
 {
 path : '/assignments',
-element: <Assignments></Assignments>
+element: <Assignments></Assignments>,
+loader:()=> fetch('http://localhost:5000/assignmentCount')
 }
 ,
 {
 path:'/updateAssignment/:id',
-element:<UpdateAssignment></UpdateAssignment>,
+element: <PrivetRoute><UpdateAssignment></UpdateAssignment></PrivetRoute> ,
 loader: ({params})=> fetch(`http://localhost:5000/create/${params.id}`)
 }
 ,
@@ -60,7 +61,7 @@ element:<SubmitedAssignments></SubmitedAssignments>
 },
 {
 path: '/ViewAssignment/:id',
-element: <ViewAssignment></ViewAssignment>,
+element: <PrivetRoute><ViewAssignment></ViewAssignment></PrivetRoute>,
 loader: ({params})=> fetch(`http://localhost:5000/create/${params.id}`)
 },{
 path: '/givemark/:id',
