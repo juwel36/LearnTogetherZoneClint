@@ -36,9 +36,7 @@ const MyAssignment = () => {
 
   const handleremove = (id) =>{
     
-  
-   
-  fetch(`http://localhost:5000/create/${id}`,{
+  fetch(`http://localhost:5000/feedback/${id}`,{
   method:'DELETE',
   })
   .then(res=> res.json())
@@ -56,7 +54,7 @@ const MyAssignment = () => {
   })
   }
 
-// feedback,marks,email2,status,photo2,dificaltyLevel2,initalMarks2
+
 
   return (
    <div className="bg-white">

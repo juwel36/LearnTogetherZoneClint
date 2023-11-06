@@ -6,7 +6,6 @@ import { useState } from "react";
 
 
 const Assignments = () => {
-
   const { data: assignments=[], isPending, error, } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
@@ -15,7 +14,8 @@ const Assignments = () => {
     }
   })
   
-
+  
+ 
   
   const [selectedDifficulty, setSelectedDifficulty] = useState('Easy'); 
 
@@ -49,7 +49,7 @@ const Assignments = () => {
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-7">
 {filteredAssignments.map((res) => (
-          <Allassignments key={res._id} assignments={res}></Allassignments>
+          <Allassignments key={res._id} assignments={res} ></Allassignments>
         ))}
 
 

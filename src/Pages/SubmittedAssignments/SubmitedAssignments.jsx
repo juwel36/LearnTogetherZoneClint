@@ -32,52 +32,18 @@ const SubmitedAssignments = () => {
     return <div>Error: {error.message}</div>;
   }
 
- // Function to fetch a single item
-
-
-
-  const handleConfirm = (id) => {
-    fetch(`http://localhost:5000/create/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ status: 'confirm' }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          
-          setData((prevData) => {
-            const updatedBooking = prevData.find((booking) => booking._id === id);
-            if (updatedBooking) {
-              updatedBooking.status = 'confirm';
-            }
-            return [...prevData];
-          });
-        }
-      });
-  };
+ 
 
   const filteredData = data.filter((item) => item.status === statusFilter);
 
 
-
-
-
-
-
-
-
-
-
   return (
-    <div>
+   <div className="bg-black">
+     <div className="max-w-6xl mx-auto">
       <Navbar></Navbar>
 
-      <h1>Filtered Data for Status: {statusFilter}</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+     
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-5">
         {filteredData.map((item) => (
           <div key={item._id} className="card lg:card-side bg-white text-black shadow-xl">
             <figure><img className="w-40 h-40" src={item.photo} alt="Album" /></figure>
@@ -87,19 +53,20 @@ const SubmitedAssignments = () => {
               <p> {item.initalMarks}  </p>
 
 
-              <div className="card-actions justify-end">
+              <div className="card-actions justify-end items-center">
 
 <Link to={`/givemark/${item._id}`}>  <button className="btn"> Give Mark </button> </Link>
 
 
 
-                <button onClick={() => handleConfirm(item._id)} className="btn bg-sky-900 text-white">{item.status}</button>
+                <button className="  ">{item.status}...</button>
               </div>
             </div>
           </div>
         ))}
       </div>
     </div>
+   </div>
   );
 };
 

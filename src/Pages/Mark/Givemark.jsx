@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Authproder/Authprovider";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,8 +7,8 @@ import Navbar from "../../Components/Navbar/Navbar";
 
 
 const Givemark = () => {
-const {pdf,note,email,initalMarks,photo,dataTitle,dificaltyLevel}=useLoaderData(null)
-// const {user}=useContext(AuthContext)
+const {pdf,note,email,initalMarks,photo,dataTitle,dificaltyLevel,_id}=useLoaderData(null)
+const navigate=useNavigate()
 
 
 const handlegivemark=e=>{
@@ -34,13 +34,26 @@ axios.post('http://localhost:5000/feedback',userData)
     showConfirmButton: false,
     timer: 1500
   })
-
-  
+  navigate('/submittedassignments')
 })
 
 
+fetch(`http://localhost:5000/submit/${_id}`,{
+method:'PATCH',
+headers:{
+  'content-type':'application/json'
+},
+body:JSON.stringify({status: 'completed'})
+})
+.then(res=>res.json())
+.then(data=>{
+  console.log(data);
+})
 
 }
+
+
+
 
 
   return (
