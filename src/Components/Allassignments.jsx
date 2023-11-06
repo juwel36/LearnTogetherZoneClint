@@ -15,7 +15,7 @@ const {Deficalty,date,description,email,image,marks,title,_id}=assignments;
     <p>Marks: {marks}</p>
     <p>Difficulty level: <span className="font-semibold text-xl"> {Deficalty} </span> </p>
     <div className=" flex gap-2">
-      <button className="btn bg-teal-800 text-white">View Assignment</button>
+      <Link to={`/ViewAssignment/${_id}`}> <button className="btn bg-teal-800 text-xs text-white">View Assignment</button> </Link>
       <Link to={`/updateAssignment/${_id}`}> <button className="btn bg-teal-800 text-xs text-white">Update Assignment</button> </Link>
       
     </div>

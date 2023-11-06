@@ -35,7 +35,7 @@ const MyAssignment = () => {
   const filteredData = data.filter((item) => item.status === statusFilter);
 
   const handleremove = (id) =>{
-    console.log(id);
+    
   
    
   fetch(`http://localhost:5000/create/${id}`,{
