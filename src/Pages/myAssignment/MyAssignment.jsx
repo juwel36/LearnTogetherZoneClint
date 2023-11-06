@@ -8,12 +8,12 @@ import Swal from "sweetalert2";
 const MyAssignment = () => {
 
   const [data, setData] = useState([]);
-  const [statusFilter, setStatusFilter] = useState("confirm");
+  const [statusFilter, setStatusFilter] = useState("completed");
 
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/create');
+      const res = await axios.get('http://localhost:5000/feedback');
       return res.data;
     }
   });
@@ -56,7 +56,7 @@ const MyAssignment = () => {
   })
   }
 
-
+// feedback,marks,email2,status,photo2,dificaltyLevel2,initalMarks2
 
   return (
    <div className="bg-white">
@@ -66,13 +66,15 @@ const MyAssignment = () => {
 <div className="grid grid-cols-1 gap-5 mt-6">
         {filteredData.map((item) => (
           <div key={item._id} className="card lg:card-side bg-base-100 shadow-xl">
-            <figure><img className="w-40 h-40" src={item.image} alt="Album" /></figure>
+            <figure><img className="w-40 h-40" src={item.photo2} alt="Album" /></figure>
             <div className="card-body">
-              <h2 className="card-title"> {item.title} </h2>
-              <p>Click the button to listen on Spotify app.</p>
+              <h2 className="card-title"> Feedback: {item.feedback} </h2>
+              <p> {item.initalMarks2}  </p>
+              <p> {item.marks}  </p>
+              <h2 className="card-title"> {item.dificaltyLevel2} </h2>
               <div className="card-actions justify-end">
                 <button onClick={()=>handleremove(item._id)} className="btn bg-sky-900 text-white"> Delete 🚮 </button>
-                <button className="btn bg-sky-900 text-white">{item.status}</button>
+                <button className=" text-white">{item.status}</button>
               </div>
             </div>
           </div>

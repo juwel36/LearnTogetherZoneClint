@@ -18,11 +18,22 @@ const handletakeassignment = (e) => {
   const note = e.target.note.value;
   const email=user.email
   const status=  "pending"
+const dataTitle=title
+const photo=image
+const dificaltyLevel=Deficalty 
+const time=date
+const initalMarks=marks
+
   const userData = {
     pdf,
     note,
     email,
-    status
+    status,
+    dataTitle,
+    photo,
+    dificaltyLevel,
+    time,
+    initalMarks
   };
   console.log(userData);
 
