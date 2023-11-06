@@ -3,6 +3,7 @@ import Navbar from "./Navbar/Navbar";
 import { useQuery } from "@tanstack/react-query";
 import Allassignments from "./Allassignments";
 import { useState } from "react";
+import Spinner from "./Spinner";
 
 
 const Assignments = () => {
@@ -25,7 +26,7 @@ const Assignments = () => {
 
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return  <div><Spinner></Spinner></div> ;
   }
   if (error) {
     return <div>Error: {error.message}</div>;

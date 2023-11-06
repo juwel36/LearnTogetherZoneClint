@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Authproder/Authprovider";
 import { Navigate } from "react-router-dom";
+import Spinner from "../Components/Spinner";
 
 
 const PrivetRoute = ({children}) => {
@@ -9,7 +10,7 @@ const PrivetRoute = ({children}) => {
 
   if(loading){
     return <div className="flex justify-center items-center">
-      <span className="loading loading-ring loading-lg text-white"></span>
+     <Spinner></Spinner>
     </div>
   }
   
