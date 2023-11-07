@@ -2,14 +2,17 @@ import axios from "axios";
 import Navbar from "./Navbar/Navbar";
 import { useQuery } from "@tanstack/react-query";
 import Allassignments from "./Allassignments";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Spinner from "./Spinner";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../Authproder/Authprovider";
 
 
 const Assignments = () => {
+  const {user}=useContext(AuthContext)
   //  paigination
     const { count } = useLoaderData()
+    const [data, setData] = useState([]);
     const [itemsPerPage, setitemsperPage] = useState(4)
     const numberOfPages = Math.ceil(count / itemsPerPage)
     const pages = [...Array(numberOfPages).keys()];
@@ -29,12 +32,16 @@ const Assignments = () => {
     }
   });
   
+  useEffect(() => {
+    if (assignments) {
+      setData(assignments);
+    }
+  }, [assignments]);
   
-  
 
 
 
-  const filteredAssignments = assignments.filter(
+  const filteredAssignments = data.filter(
     (assignment) => assignment.Deficalty === selectedDifficulty
   ); 
 
@@ -72,7 +79,14 @@ const handleNext =()=>{
 
 
 
+  const handleDelete = (id) => {
+    
+    const updatedAssignments = assignments.filter((assignment) => assignment._id !== id);
+   
+    setData(updatedAssignments);
+  };
 
+const useremail=user.email;
 
 
 
@@ -84,7 +98,7 @@ const handleNext =()=>{
 <h1 className="text-xl font-bold text-black pt-4 pb-3">Filter using difficulty level</h1>
 <select name="Deficalty" id=""  onChange={(e) => {
               setSelectedDifficulty(e.target.value);
-              setCurrentPage(0); // Reset current page when difficulty changes
+              setCurrentPage(0); 
             }} className="input input-bordered input-info ">
   <option value="Easy">Easy</option>
   <option value="Medium">Medium</option>
@@ -95,7 +109,7 @@ const handleNext =()=>{
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-7">
 {filteredAssignments.map((res) => (
-          <Allassignments key={res._id} assignments={res} z></Allassignments>
+          <Allassignments key={res._id} assignments={res} user={useremail} onDelete={handleDelete} ></Allassignments>
         ))}
 
 

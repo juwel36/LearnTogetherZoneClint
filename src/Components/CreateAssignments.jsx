@@ -128,7 +128,7 @@ User Email </h1>
  </h1>
  <select name="Spotlight" id="" className="input input-bordered input-info w-full">
   <option value="Regular-Picks">Regular-Picks</option>
-  <option value="Featured ">Featured </option>
+  <option value="Featured">Featured </option>
  
 </select>
 

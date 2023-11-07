@@ -1,9 +1,11 @@
+
 import Banner from "../../Components/Banner";
 import FaqSection from "../../Components/FaqSection";
 import Feature from "../../Components/Feature";
 import Footer from "../../Components/Navbar/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import Review from "../../Components/Review";
+
 
 
 

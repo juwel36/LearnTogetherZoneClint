@@ -1,8 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
 
 const Feature = () => {
+  const [data, setData] = useState([]);
+  
+
+
+  
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
@@ -10,24 +18,27 @@ const Feature = () => {
       return res.data;
     },
   });
+  useEffect(() => {
+    if (assignments) {
+      setData(assignments);
+    }
+  }, [assignments]);
+
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <div>  <Spinner></Spinner>  </div>;
   }
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
-  const featuredAssignments = assignments.filter(
-    (item) => item.Spotlight.trim() === "Featured"
-  );
 
   return (
 
 <div className="mb-16">
   <h1 className="text-3xl py-3 font-serif mt-16  text-black">Feature section</h1>
   <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-      {featuredAssignments.map((assignment) => (
+      {data.map((assignment) => (
       
 <div key={assignment._id} className="card border-2 p-1">
   <figure><img className="h-36 w-full" src={assignment.image}alt="car!"/></figure>
