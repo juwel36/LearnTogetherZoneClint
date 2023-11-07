@@ -7,9 +7,9 @@ import Navbar from "../../Components/Navbar/Navbar";
 
 const Home = () => {
   return (
-  <div className="bg-white">
+    <div className="bg-white">
+    <Navbar></Navbar>
       <div className="max-w-6xl mx-auto">
-      <Navbar></Navbar>
 <Banner></Banner>
 
 

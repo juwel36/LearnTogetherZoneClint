@@ -61,8 +61,8 @@ axios.post('http://localhost:5000/create',create)
 
 
     <div className="bg-white">
-      <div className=" max-w-6xl mx-auto">
       <Navbar></Navbar>
+      <div className=" max-w-6xl mx-auto">
 <div >
 
 <form  onSubmit={hanldecreateassignments}>

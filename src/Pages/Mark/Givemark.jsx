@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Authproder/Authprovider";
 import axios from "axios";
@@ -7,22 +7,25 @@ import Navbar from "../../Components/Navbar/Navbar";
 
 
 const Givemark = () => {
-const {pdf,note,email,initalMarks,photo,dataTitle,dificaltyLevel,_id}=useLoaderData(null)
+// const {pdf,note,initalMarks,photo,dificaltyLevel,_id}=useLoaderData(null)
+const {pdf,note,initalMarks,photo,dificaltyLevel,_id,dataTitle}=useLoaderData(null)
 const navigate=useNavigate()
-
+const {user}=useContext(AuthContext)
+console.log(user.email);
 
 const handlegivemark=e=>{
   e.preventDefault();
 const feedback=e.target.feedback.value;
 const marks=e.target.marks.value;
-const email2=email
+const email=user.email
 const status=  "completed"
 const photo2=photo
 const dificaltyLevel2=dificaltyLevel
 const initalMarks2=initalMarks
+const title=dataTitle
 
 const userData = {
- feedback,marks,email2,status,photo2,dificaltyLevel2,initalMarks2
+ feedback,marks,email,status,photo2,dificaltyLevel2,initalMarks2,title
 };
 
 axios.post('http://localhost:5000/feedback',userData)

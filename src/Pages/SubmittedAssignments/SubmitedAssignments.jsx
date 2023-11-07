@@ -40,8 +40,8 @@ const SubmitedAssignments = () => {
 
   return (
    <div className="bg-black">
-     <div className="max-w-6xl mx-auto">
       <Navbar></Navbar>
+     <div className="max-w-6xl mx-auto">
 
      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-5">

@@ -76,8 +76,8 @@ const handleNext =()=>{
 
   return (
  <div className="bg-white pb-96 ">
-     <div className="max-w-6xl mx-auto">
 <Navbar></Navbar>
+     <div className="max-w-6xl mx-auto">
 <div className="">
 <h1 className="text-xl font-bold text-black pt-4 pb-3">Filter using difficulty level</h1>
 <select name="Deficalty" id="" onChange={(e) => setSelectedDifficulty(e.target.value)} className="input input-bordered input-info ">
