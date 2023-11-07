@@ -10,18 +10,21 @@ import { useLoaderData } from "react-router-dom";
 const Assignments = () => {
   //  paigination
     const { count } = useLoaderData()
-    const [itemsPerPage, setitemsperPage] = useState(5)
+    const [itemsPerPage, setitemsperPage] = useState(4)
     const numberOfPages = Math.ceil(count / itemsPerPage)
     const pages = [...Array(numberOfPages).keys()];
     const [currentPage,setCurrentPage]=useState(0)
+    
+    const [selectedDifficulty, setSelectedDifficulty] = useState('Easy');  
 
 
-
-
-  const { data: assignments = [], isPending, error } = useQuery({
-    queryKey: ['assignments', currentPage, itemsPerPage],
-    queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/create?page=${currentPage}&size=${itemsPerPage}`);
+    
+    const { data: assignments = [], isPending, error } = useQuery({
+      queryKey: ['assignments', currentPage, itemsPerPage,selectedDifficulty],
+      queryFn: async () => {
+        const res = await axios.get(
+          `http://localhost:5000/create?page=${currentPage}&size=${itemsPerPage}&difficulty=${selectedDifficulty}`
+        );
       return res.data;
     }
   });
@@ -30,7 +33,6 @@ const Assignments = () => {
   
 
 
-  const [selectedDifficulty, setSelectedDifficulty] = useState('Easy'); 
 
   const filteredAssignments = assignments.filter(
     (assignment) => assignment.Deficalty === selectedDifficulty
@@ -80,7 +82,10 @@ const handleNext =()=>{
      <div className="max-w-6xl mx-auto">
 <div className="">
 <h1 className="text-xl font-bold text-black pt-4 pb-3">Filter using difficulty level</h1>
-<select name="Deficalty" id="" onChange={(e) => setSelectedDifficulty(e.target.value)} className="input input-bordered input-info ">
+<select name="Deficalty" id=""  onChange={(e) => {
+              setSelectedDifficulty(e.target.value);
+              setCurrentPage(0); // Reset current page when difficulty changes
+            }} className="input input-bordered input-info ">
   <option value="Easy">Easy</option>
   <option value="Medium">Medium</option>
   <option value="Hard">Hard</option>
@@ -90,13 +95,13 @@ const handleNext =()=>{
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-7">
 {filteredAssignments.map((res) => (
-          <Allassignments key={res._id} assignments={res} ></Allassignments>
+          <Allassignments key={res._id} assignments={res} z></Allassignments>
         ))}
 
 
 </div>
 <div id="paigination" className="text-center">
-<p>current page : {currentPage} </p>
+
 <button className="btn mr-2" onClick={handlePrevious}> Pre </button>
 {
         pages.map(page => <button className="btn mr-2 my-16 "

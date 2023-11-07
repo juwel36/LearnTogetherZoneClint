@@ -5,8 +5,8 @@ const Spinner = () => {
 
   return (
     <div className=''>
-      <div className=' h-[80vh] flex justify-center'>
-      <img className='p-32' src={gif} alt="Loading..." />
+      <div className=' h-[80vh] flex justify-center bg-white'>
+      <img className='p-24 ' src={gif} alt="Loading..." />
       </div>
     </div>
   );

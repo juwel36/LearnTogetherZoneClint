@@ -31,6 +31,10 @@ const Allassignments = ({ assignments }) => {
   //   })
   //   }
   //   <button onClick={()=>handleremove(_id)} className="btn bg-sky-900 text-white"> Delete 🚮 </button>
+ 
+
+
+
 
   return (
     <div>
@@ -44,7 +48,7 @@ const Allassignments = ({ assignments }) => {
           <div className=" flex gap-2">
             <Link to={`/ViewAssignment/${_id}`}> <button className="btn bg-teal-800 text-xs text-white">View Assignment</button> </Link>
             <Link to={`/updateAssignment/${_id}`}> <button className="btn bg-teal-800 text-xs text-white">Update Assignment</button> </Link>
-
+          
           </div>
         </div>
       </div>
