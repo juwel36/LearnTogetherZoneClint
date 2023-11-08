@@ -42,13 +42,13 @@ element :<PrivetRoute> <CreateAssignments></CreateAssignments></PrivetRoute>
 {
 path : '/assignments',
 element: <Assignments></Assignments>,
-loader:()=> fetch('http://localhost:5000/assignmentCount')
+loader:()=> fetch('https://learn-together-server.vercel.app/assignmentCount')
 }
 ,
 {
 path:'/updateAssignment/:id',
 element: <PrivetRoute><UpdateAssignment></UpdateAssignment></PrivetRoute> ,
-loader: ({params})=> fetch(`http://localhost:5000/create/${params.id}`)
+loader: ({params})=> fetch(`https://learn-together-server.vercel.app/create/${params.id}`)
 }
 ,
 {
@@ -62,11 +62,11 @@ element:<SubmitedAssignments></SubmitedAssignments>
 {
 path: '/ViewAssignment/:id',
 element: <PrivetRoute><ViewAssignment></ViewAssignment></PrivetRoute>,
-loader: ({params})=> fetch(`http://localhost:5000/create/${params.id}`)
+loader: ({params})=> fetch(`https://learn-together-server.vercel.app/create/${params.id}`)
 },{
 path: '/givemark/:id',
 element: <Givemark></Givemark>,
-loader: ({params})=> fetch(`http://localhost:5000/submit/${params.id}`)
+loader: ({params})=> fetch(`https://learn-together-server.vercel.app/submit/${params.id}`)
 
 }
 
@@ -76,6 +76,6 @@ loader: ({params})=> fetch(`http://localhost:5000/submit/${params.id}`)
   },
 ]);
 
-// http://localhost:5000
+// https://learn-together-server.vercel.app
 
 export default router

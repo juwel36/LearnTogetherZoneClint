@@ -15,7 +15,7 @@ const SubmitedAssignments = () => {
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/submit');
+      const res = await axios.get('https://learn-together-server.vercel.app/submit');
       return res.data;
     }
   });
@@ -47,7 +47,7 @@ const SubmitedAssignments = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-5">
           {filteredData.map((item) => (
             <div key={item._id} className="card lg:card-side bg-white text-black shadow-xl">
-              <figure><img className="w-40 h-40 w-fit" src={item.photo} alt="Album" /></figure>
+              <figure><img className="w-40 lg:h-40 w-fit" src={item.photo} alt="Album" /></figure>
               <div className="card-body">
                 <h2 className="card-title font-bold text-teal-800"> User Name : {user.displayName} </h2>
                 <h2 className="card-title">Title: {item.dataTitle} </h2>

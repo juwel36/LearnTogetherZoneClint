@@ -14,7 +14,7 @@ const Feature = () => {
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/create");
+      const res = await axios.get("https://learn-together-server.vercel.app/create");
       return res.data;
     },
   });
@@ -36,7 +36,7 @@ const Feature = () => {
   return (
 
 <div className="mb-16">
-  <h1 className="text-3xl py-3 font-serif mt-16  text-black">Feature section</h1>
+  <h1 className="text-4xl py-4 font-serif mt-16  text-black">Feature section</h1>
   <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
       {data.map((assignment) => (
       

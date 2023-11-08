@@ -43,7 +43,7 @@ const ViewAssignment = () => {
       initalMarks,
     };
 
-    axios.post("http://localhost:5000/submit", userData).then((res) => {
+    axios.post("https://learn-together-server.vercel.app/submit", userData).then((res) => {
       Swal.fire({
         position: "top-end",
         icon: "success",

@@ -17,8 +17,8 @@ const MyAssignment = () => {
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      // const res = await axios.get('http://localhost:5000/feedback');
-      const res = await axios.get(`http://localhost:5000/feedback?email=${user?.email}`, { withCredentials: true });
+      // const res = await axios.get('https://learn-together-server.vercel.app/feedback');
+      const res = await axios.get(`https://learn-together-server.vercel.app/feedback?email=${user?.email}`, { withCredentials: true });
       return res.data;
     }
   });
@@ -41,7 +41,7 @@ const MyAssignment = () => {
 
   const handleremove = (id) =>{
     
-  fetch(`http://localhost:5000/feedback/${id}`,{
+  fetch(`https://learn-together-server.vercel.app/feedback/${id}`,{
   method:'DELETE',
   })
   .then(res=> res.json())
@@ -69,7 +69,7 @@ const MyAssignment = () => {
 <div className="grid grid-cols-1 lg:grid-cols-2  gap-5 mt-6">
         {filteredData.map((item) => (
           <div key={item._id} className="card lg:card-side bg-base-100 shadow-xl">
-            <figure><img className="w-40 h-40" src={item.photo2} alt="Album" /></figure>
+            <figure><img className="w-52 lg:h-40" src={item.photo2} alt="Album" /></figure>
             <div className="card-body">
               <h2 className="card-title"> Feedback: {item.title} </h2>
               <h2 className="card-title"> Feedback: {item.feedback} </h2>

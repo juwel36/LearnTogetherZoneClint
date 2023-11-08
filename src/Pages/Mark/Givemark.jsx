@@ -28,7 +28,7 @@ const userData = {
  feedback,marks,email,status,photo2,dificaltyLevel2,initalMarks2,title
 };
 
-axios.post('http://localhost:5000/feedback',userData)
+axios.post('https://learn-together-server.vercel.app/feedback',userData)
 .then(res=>{
   Swal.fire({
     position: 'top-end',
@@ -41,7 +41,7 @@ axios.post('http://localhost:5000/feedback',userData)
 })
 
 
-fetch(`http://localhost:5000/submit/${_id}`,{
+fetch(`https://learn-together-server.vercel.app/submit/${_id}`,{
 method:'PATCH',
 headers:{
   'content-type':'application/json'

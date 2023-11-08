@@ -55,13 +55,13 @@ const loggeduser={ email:userEmail }
     setloading(false)
 
 if(currentuser){
-  axios.post('http://localhost:5000/jwt',loggeduser,{withCredentials:true})
+  axios.post('https://learn-together-server.vercel.app/jwt',loggeduser,{withCredentials:true})
   .then(res=>{
     console.log(res.data)
   })
 
 }else{
-  axios.post('http://localhost:5000/logout',loggeduser,{withCredentials:true})
+  axios.post('https://learn-together-server.vercel.app/logout',loggeduser,{withCredentials:true})
   .then(res=>{
     console.log(res.data);
   })

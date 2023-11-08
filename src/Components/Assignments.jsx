@@ -26,7 +26,7 @@ const Assignments = () => {
       queryKey: ['assignments', currentPage, itemsPerPage,selectedDifficulty],
       queryFn: async () => {
         const res = await axios.get(
-          `http://localhost:5000/create?page=${currentPage}&size=${itemsPerPage}&difficulty=${selectedDifficulty}`
+          `https://learn-together-server.vercel.app/create?page=${currentPage}&size=${itemsPerPage}&difficulty=${selectedDifficulty}`
         );
       return res.data;
     }

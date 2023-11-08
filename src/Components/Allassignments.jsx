@@ -8,7 +8,7 @@ const Allassignments = ({ assignments, onDelete, user }) => {
   const handleDelete = () => {
     if (user === email) {
       
-      fetch(`http://localhost:5000/create/${_id}`, {
+      fetch(`https://learn-together-server.vercel.app/create/${_id}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())
