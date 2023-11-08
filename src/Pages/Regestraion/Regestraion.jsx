@@ -23,6 +23,9 @@ const handleregestraion = e =>{
   if (password.length < 6) {
     return setshowerror("Your password must be at least 6 characters long!");
   }
+  if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+    return setshowerror("Your password must contain at least one special character!");
+  }
 
   createuser(email,password)
   .then(res=>{
@@ -113,8 +116,8 @@ const handlegoogleLogin =()=>{
     <label className="label">
     <p href="#" className="label-text-alt  ">Already Have an account ?<span className='text-black'> <Link to='/login'>Log In</Link></span> </p>
     </label>
-    <p> {showerror} </p>
   </div>
+    <p> {showerror} </p>
   <div className="form-control mt-6">
     <button className="btn bg-blue-700 border-0 text-white">Regester now</button>
   </div>

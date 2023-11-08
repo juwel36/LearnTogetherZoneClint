@@ -90,7 +90,7 @@ const ViewAssignment = () => {
                   fileName="assignment.pdf"
                 >
                   {({ blob, url, loading, error }) =>
-                    loading ? "Loading document..." : "Download PDF"
+                    loading ? "Loading document..." : <button className="btn bg-green-800 text-white ml-1" > Download Pdf 📥 </button>
                   }
                 </PDFDownloadLink>
               )}

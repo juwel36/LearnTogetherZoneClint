@@ -86,7 +86,7 @@ const handleNext =()=>{
     setData(updatedAssignments);
   };
 
-const useremail=user.email;
+const useremail=user?.email;
 
 
 

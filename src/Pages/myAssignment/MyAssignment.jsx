@@ -66,7 +66,7 @@ const MyAssignment = () => {
 <Navbar></Navbar>
      <div className="max-w-6xl mx-auto">
 
-<div className="grid grid-cols-1 gap-5 mt-6">
+<div className="grid grid-cols-1 lg:grid-cols-2  gap-5 mt-6">
         {filteredData.map((item) => (
           <div key={item._id} className="card lg:card-side bg-base-100 shadow-xl">
             <figure><img className="w-40 h-40" src={item.photo2} alt="Album" /></figure>

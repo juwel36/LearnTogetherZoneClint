@@ -46,7 +46,7 @@ const Allassignments = ({ assignments, onDelete, user }) => {
 
   return (
     <div>
-      <div className="card lg:card-side bg-base-100 text-white shadow-xl">
+      <div className="card lg:card-side bg-base-100 h-64 text-white shadow-xl">
         <figure><img className="w-52 " src={image} alt="Album" /></figure>
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
