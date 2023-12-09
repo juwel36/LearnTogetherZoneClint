@@ -15,7 +15,7 @@ const SubmitedAssignments = () => {
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      const res = await axios.get('https://learn-together-server.vercel.app/submit');
+      const res = await axios.get('http://localhost:5000/submit');
       return res.data;
     }
   });

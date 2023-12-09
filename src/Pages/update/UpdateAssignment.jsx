@@ -23,7 +23,7 @@ const handleupdate=e=>{
   title,marks,image,Deficalty,date,description
   }
 console.log(update);
-fetch(`https://learn-together-server.vercel.app/create/${_id}`,{
+fetch(`http://localhost:5000/create/${_id}`,{
   method:'PUT',
   headers:{
     'content-type':'application/json'

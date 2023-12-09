@@ -12,40 +12,48 @@ const Assignments = () => {
   const {user}=useContext(AuthContext)
   //  paigination
     const { count } = useLoaderData()
+    
     const [data, setData] = useState([]);
-    const [itemsPerPage, setitemsperPage] = useState(4)
-    const numberOfPages = Math.ceil(count / itemsPerPage)
-    const pages = [...Array(numberOfPages).keys()];
+    const [itemsPerPage, setitemsperPage] = useState(2)
     const [currentPage,setCurrentPage]=useState(0)
     
     const [selectedDifficulty, setSelectedDifficulty] = useState('Easy');  
 
+const [pages,setPages]=useState([])
 
-    
-    const { data: assignments = [], isPending, error } = useQuery({
-      queryKey: ['assignments', currentPage, itemsPerPage,selectedDifficulty],
-      queryFn: async () => {
-        const res = await axios.get(
-          `https://learn-together-server.vercel.app/create?page=${currentPage}&size=${itemsPerPage}&difficulty=${selectedDifficulty}`
-        );
-      return res.data;
-    }
-  });
+     
+  const { data: assignments = {}, isPending, error } = useQuery({
+    queryKey: ['assignments', currentPage, itemsPerPage,selectedDifficulty],
+    queryFn: async () => {
+      const res = await axios.get(
+        `http://localhost:5000/create?page=${currentPage}&size=${itemsPerPage}&difficulty=${selectedDifficulty}`
+      );
+    return res.data;
+  }
+});
+
   
   useEffect(() => {
     if (assignments) {
-      setData(assignments);
+      setData(assignments.result);
     }
+
+    
+    if(assignments.count){
+      const numberOfPages = Math.ceil(assignments.count / itemsPerPage)
+      const p = [...Array(numberOfPages).keys()];
+      setPages(p)
+      
+    }
+    console.log(assignments);
   }, [assignments]);
   
 
 
 
-  const filteredAssignments = data.filter(
+  const filteredAssignments = assignments.result?.filter(
     (assignment) => assignment.Deficalty === selectedDifficulty
   ); 
-
-
   if (isPending) {
     return  <div><Spinner></Spinner></div> ;
   }
@@ -55,13 +63,12 @@ const Assignments = () => {
 
 
 
-  const handleitemPerPage=(e)=>{
-    const val =parseInt(e.target.value)
-    console.log(val);
-    setitemsperPage(val)
-    setCurrentPage(0)
+  // const handleitemPerPage=(e)=>{
+  //   const valu =parseInt(e.target.value)
+  //   setitemsperPage(valu)
+  //   setCurrentPage(0)
+  // }
 
-  }
 
   const handlePrevious = ()=>{
     if(currentPage > 0){
@@ -126,14 +133,14 @@ const useremail=user?.email;
       }
 <button className="btn" onClick={handleNext}>Next</button>
 
-<select name="" value={itemsPerPage} hidden onChange={handleitemPerPage} id="">
+{/* <select name="" value={itemsPerPage} hidden onChange={handleitemPerPage} id="">
 <option value="3">3</option>
 <option value="5">5</option>
 <option value="10">10</option>
 <option value="20">20</option>
 <option value="50">50</option>
 
-</select>
+</select> */}
 
 
 </div>

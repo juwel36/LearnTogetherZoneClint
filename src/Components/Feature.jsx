@@ -14,7 +14,7 @@ const Feature = () => {
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      const res = await axios.get("https://learn-together-server.vercel.app/create");
+      const res = await axios.get("http://localhost:5000/create");
       return res.data;
     },
   });

@@ -17,8 +17,8 @@ const MyAssignment = () => {
   const { data: assignments = [], isPending, error } = useQuery({
     queryKey: ['assignments'],
     queryFn: async () => {
-      // const res = await axios.get('https://learn-together-server.vercel.app/feedback');
-      const res = await axios.get(`https://learn-together-server.vercel.app/feedback?email=${user?.email}`, { withCredentials: true });
+      // const res = await axios.get('http://localhost:5000/feedback');
+      const res = await axios.get(`http://localhost:5000/feedback?email=${user?.email}`, { withCredentials: true });
       return res.data;
     }
   });
@@ -41,7 +41,7 @@ const MyAssignment = () => {
 
   const handleremove = (id) =>{
     
-  fetch(`https://learn-together-server.vercel.app/feedback/${id}`,{
+  fetch(`http://localhost:5000/feedback/${id}`,{
   method:'DELETE',
   })
   .then(res=> res.json())

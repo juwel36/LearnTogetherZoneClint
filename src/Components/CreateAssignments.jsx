@@ -37,7 +37,7 @@ const create={
 title,marks,image,Deficalty,date,email,description,status,Spotlight
 
 }
-axios.post('https://learn-together-server.vercel.app/create',create)
+axios.post('http://localhost:5000/create',create)
 .then(res=>{
   Swal.fire({
     position: 'top-end',

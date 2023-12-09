@@ -87,7 +87,9 @@ const Navbar = () => {
     )}
   </label>
   {user ? (
-            <button onClick={loggedOut} className="btn text-white border-2 border-sky-700" >Sign Out</button>
+            <button onClick={loggedOut} className="btn text-white border-2 border-sky-700 hover:" >Sign Out</button>
+         
+
           ) : (
             <>
               <NavLink to='/login' className="btn bg-slate-700 text-white border-none px-6">Log in</NavLink>
